@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes on setup</title>
+</head>
+<body>
+    <h1>Practice JS notes on setup</h1>
+    <script>
+
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d'); /* The getContext() method returns an object with tools (methods) for drawing. */
 
@@ -24,9 +36,32 @@ const staggerFrames = 5; /* to slow down frames by this amount */
 /* making custom function animation loop. Have to clear old paint between animation frames. clear requires 4 variables for location */
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position = Math.floor(gameFrame/staggerFrames)
-    ctx.drawImage(playerImage, frameX * spriteWidth, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight); 
+    /* ctx.fillRect(50 ,50,100,100) */ /* location of rec tangle, and width and height*/
+    /* 
+    ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);  this has the most utility, 9 variable. image, then source then destination */
+    ctx.drawImage(playerImage, frameX * spriteWidth, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight); /* include x and y coords, using spriteWidth and Height draws at original size */
+    
+    
+    
+    if (gameFrame % staggerFrames == 0){ /* remainder operator */
+        if (frameX < 6) frameX++; /* the number of sprites in the first row */
+        else frameX = 0;
+    }
+    
+
     gameFrame++;
-    requestAnimationFrame(animate); 
+    requestAnimationFrame(animate); /* runs the function */
 };
 animate();
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
